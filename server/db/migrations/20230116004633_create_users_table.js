@@ -20,6 +20,12 @@ exports.up = async function (knex) {
             GRANT SELECT, INSERT, UPDATE, DELETE
             ON users
             TO ${process.env.DATA_DB_APPUSER}
+        `),
+
+        knex.raw(`
+            GRANT SELECT, INSERT, UPDATE, DELETE
+            ON users
+            TO ${process.env.DATA_DB_APPUSER_BYPASSRLS}
         `)
     ]);
 }
