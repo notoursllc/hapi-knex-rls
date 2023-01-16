@@ -19,10 +19,12 @@ const init = async () => {
         }
     });
 
-    await server.register({
-        plugin: require('@hapi/basic'),
-        options: {}
-    });
+    await server.register(
+        {
+            plugin: require('@hapi/basic'),
+            options: {}
+        }
+    );
 
 
     // server.ext('onRequest', (request, h) => {
@@ -33,8 +35,6 @@ const init = async () => {
 
     server.auth.strategy('storeauth', 'basic', {
         validate: async (request, tenant_id, api_key) => {
-            // console.log("STOREAUTH", tenant_id, api_key);
-
             try {
                 const _knex = TenantKnexManager.getKnexForTenant(process.env.SUPERUSER_ID);
                 const data = await _knex('tenants')
@@ -50,8 +50,6 @@ const init = async () => {
                     console.log('Unable to get tenant data');
                 }
 
-                // console.log("tenantData", tenantData);
-
                 return {
                     isValid: tenantData ? true : false,
                     credentials: tenantData || {}
@@ -66,7 +64,6 @@ const init = async () => {
 
     /*
     * Hapi lifecycle hook 'onPostAuth' is called after the auth.strategy.
-    *
     */
     server.ext('onPostAuth', (request, h) => {
         try {
