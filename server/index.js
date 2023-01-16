@@ -36,7 +36,7 @@ const init = async () => {
     server.auth.strategy('storeauth', 'basic', {
         validate: async (request, tenant_id, api_key) => {
             try {
-                const _knex = TenantKnexManager.getKnexForTenant(process.env.SUPERUSER_ID);
+                const _knex = TenantKnexManager.getKnexForTenant(process.env.TENANT_ID_SUPERUSER);
                 const data = await _knex('tenants')
                     .select('id', 'api_key', 'active')
                     .where({

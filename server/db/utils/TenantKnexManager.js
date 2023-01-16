@@ -46,7 +46,7 @@ class TenantKnexManager {
     /*
     * Sets the value of the 'app.current_tenant` database property.
     * The value is the given tenantId.
-    * If the tenantId is the superuser (process.env.SUPERUSER_ID)
+    * If the tenantId is the superuser (process.env.TENANT_ID_SUPERUSER)
     * then the connection user/password is changed to the DB user that is the superuser
     *
     * @returns {} knex config
@@ -68,8 +68,8 @@ class TenantKnexManager {
             }
         };
 
-        knexConfig.connection.user = tenantId === process.env.SUPERUSER_ID ? process.env.DATA_DB_SUPERUSER : process.env.DATA_DB_APPUSER;
-        knexConfig.connection.password = tenantId === process.env.SUPERUSER_ID ? process.env.DATA_DB_SUPERPASS : process.env.DATA_DB_APPPASS;
+        knexConfig.connection.user = tenantId === process.env.TENANT_ID_SUPERUSER ? process.env.DATA_DB_SUPERUSER : process.env.DATA_DB_APPUSER;
+        knexConfig.connection.password = tenantId === process.env.TENANT_ID_SUPERUSER ? process.env.DATA_DB_SUPERUSER_PASSWORD : process.env.DATA_DB_APPUSER_PASSWORD;
 
         return knexConfig;
     }

@@ -2,9 +2,9 @@
 
 ## How it works
 
-- .env contains credentials for the DB superuser (DATA_DB_SUPERUSER, DATA_DB_SUPERPASS) and app user (DATA_DB_APPUSER, DATA_DB_APPPASS)
+- .env contains credentials for the DB superuser (DATA_DB_SUPERUSER, DATA_DB_SUPERUSER_PASSWORD) and app user (DATA_DB_APPUSER, DATA_DB_APPUSER_PASSWORD)
 
-- .env contains the tenant ID that is the superuser (SUPERUSER_ID)
+- .env contains the tenant ID that is the superuser (TENANT_ID_SUPERUSER)
 
 - knexfile.js contains credentails for the superuser so migrations can be run without being restricted by RLS
 

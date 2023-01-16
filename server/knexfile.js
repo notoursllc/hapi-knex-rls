@@ -30,7 +30,7 @@ const common = {
         host: process.env.DATA_DB_HOST || 'localhost',
         database: process.env.DATA_DB_NAME,
         user: process.env.DATA_DB_SUPERUSER,
-        password: process.env.DATA_DB_SUPERPASS
+        password: process.env.DATA_DB_SUPERUSER_PASSWORD
     },
     debug: !isProd
 };
