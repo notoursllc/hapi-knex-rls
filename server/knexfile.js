@@ -27,10 +27,10 @@ const common = {
         directory: './db/seeds'
     },
     connection: {
-        host: process.env.DATA_DB_HOST || 'localhost',
-        database: process.env.DATA_DB_NAME,
-        user: process.env.DATA_DB_USER,
-        password: process.env.DATA_DB_PASSWORD
+        host: process.env.DB_HOST || 'localhost',
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD
     },
     debug: !isProd
 };

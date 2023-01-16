@@ -38,13 +38,7 @@ exports.up = (knex) => {
         knex.raw(`
             GRANT SELECT, INSERT, UPDATE, DELETE
             ON tenant_members
-            TO ${process.env.DATA_DB_APPUSER}
-        `),
-
-        knex.raw(`
-            GRANT SELECT, INSERT, UPDATE, DELETE
-            ON tenant_members
-            TO ${process.env.DATA_DB_APPUSER_BYPASSRLS}
+            TO ${process.env.DB_APP_ALL_USERS_GROUP_NAME}
         `)
     ]);
 };

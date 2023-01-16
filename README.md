@@ -2,21 +2,23 @@
 
 ## Setup
 - Create 2 users in your DB (both of which are NOT superusers).   
-    1) A user that the app will use to query the DB.  Assign the name/password of this user to `DATA_DB_APPUSER` and `DATA_DB_APPUSER_PASSWORD` in .env
+    1) A user that the app will use to query the DB.  Assign the name/password of this user to `DB_APPUSER` and `DB_APPUSER_PASSWORD` in .env
     
     ```
-    CREATE USER ${process.env.DATA_DB_APPUSER} WITH LOGIN PASSWORD '${process.env.DATA_DB_APPUSER_PASSWORD}'
+    CREATE USER ${process.env.DB_APPUSER} WITH LOGIN PASSWORD '${process.env.DB_APPUSER_PASSWORD}'
     ```
 
-    2) A user that will be allowed to bypass RLS.  Assign the name/password of this user to `DATA_DB_APPUSER_BYPASSRLS` and `DATA_DB_APPUSER_BYPASSRLS_PASSWORD` in .env
+    2) A user that will be allowed to bypass RLS.  Assign the name/password of this user to `DB_APPUSER_BYPASSRLS` and `DB_APPUSER_BYPASSRLS_PASSWORD` in .env
     
     ```
-    CREATE USER ${process.env.DATA_DB_APPUSER_BYPASSRLS} WITH LOGIN PASSWORD '${process.env.DATA_DB_APPUSER_BYPASSRLS_PASSWORD}'
+    CREATE USER ${process.env.DB_APPUSER_BYPASSRLS} WITH LOGIN PASSWORD '${process.env.DB_APPUSER_BYPASSRLS_PASSWORD}'
     ```
 
-- Define which tenant ID will be allowed to use the `DATA_DB_APPUSER_BYPASSRLS` user.  Assign this tenant ID to `TENANT_ID_BYPASSRLS` in .env
+- Define which tenant ID will be allowed to use the `DB_APPUSER_BYPASSRLS` user.  Assign this tenant ID to `TENANT_ID_BYPASSRLS` in .env
 
-- Set your DBs credentials to `DATA_DB_USER` and `DATA_DB_PASSWORD` in .env.  The DB user and password are used only for doing DB migrations
+- Set your DBs credentials to `DB_USER` and `DB_PASSWORD` in .env.  The DB user and password are used only for doing DB migrations
+
+- Set the name of the DB user group that will contain all of your DB app users to `DB_APP_ALL_USERS_GROUP_NAME` in .env.
 
 
 ## How it works

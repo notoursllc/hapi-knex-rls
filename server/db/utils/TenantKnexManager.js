@@ -68,8 +68,8 @@ class TenantKnexManager {
             }
         };
 
-        knexConfig.connection.user = tenantId === process.env.TENANT_ID_BYPASSRLS ? process.env.DATA_DB_APPUSER_BYPASSRLS : process.env.DATA_DB_APPUSER;
-        knexConfig.connection.password = tenantId === process.env.TENANT_ID_BYPASSRLS ? process.env.DATA_DB_APPUSER_BYPASSRLS_PASSWORD : process.env.DATA_DB_APPUSER_PASSWORD;
+        knexConfig.connection.user = tenantId === process.env.TENANT_ID_BYPASSRLS ? process.env.DB_APPUSER_BYPASSRLS : process.env.DB_APPUSER;
+        knexConfig.connection.password = tenantId === process.env.TENANT_ID_BYPASSRLS ? process.env.DB_APPUSER_BYPASSRLS_PASSWORD : process.env.DB_APPUSER_PASSWORD;
 
         return knexConfig;
     }
