@@ -28,3 +28,15 @@
 - The basic auth credentails are validated via the 'storeauth' stragegy in server/index.js.  If this validation is successful, an `auth` property is added to the `request` object, and a `credentails` prop is added to `request.auth` (`request.auth.credentails`).
 
 - The `onPostAuth` hapi lifecycle hook is then called, which gets the knex DB connection for the given tenant via the "TenantKnexManager".  The TenantKnexManager uses the `request.auth.credentials.id` value that was set in the 'storeauth' strategy to set the `app.current_tenant` DB property value.  This is the key to enabling RLS (see the policy definitions in the DB migration files).  Finally, the `onPostAuth` hook sets a `knex` property on the request object (`request.knex`), which should be used to query the DB using RLS (`request.knex('users').select('*')`).
+
+- To verify that RLS is working using Postman to call this API endpoint:  http://localhost:10000/api/v1/users.   Reminder to set Postman to use basic auth with a username of the `TENANT_ID` value in .env, and a pasword of the `TENANT_API_KEY` value in .env.  To use basic auth credentials that will bypass RLS, set the username to the value of `TENANT_ID_BYPASSRLS` in .env.  See 'server/db/seed-data/tenants.js' for the `id` and `api_key` value for each tenant.
+
+
+## Start the server:
+`npm run dev`
+
+## Run the DB migrations:
+`npm run knex:migrate`
+
+## Seed the DB with data:
+`npm run knex:seed`
