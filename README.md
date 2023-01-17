@@ -41,9 +41,15 @@ npm install
 
 ## Usage
 1) Start a Postgres database
-2) Create a `.env` file in the root folder (`hapi-knex-rls`), and add values as seen in `.env.example`
+2) Create a `.env` file in the root folder (`hapi-knex-rls`), and add values as seen in `.env.example`.
+3) Manually add the following users to your DB: 
+    * The user as defined by `DB_APPUSER`
+    * The user as defined by `DB_APPUSER_BYPASSRLS`
+    * The group as defined by `DB_APP_ALL_USERS_GROUP_NAME`
+    * (TODO: Could this user creation have been done in a migration file instead? I wasn't able to get a `knex.raw` script to execute a conditional `IF EXISTS ... ELSE ... END IF` script to create users)
 3) Run DB migrations: `npm run knex:migrate`
 4) Seed the DB with sample data: `npm run knex:seed`
+    * Note: take a peek at "server/db/seed-data/tenants.js", so you know what tenant IDs / api keys can be used for testing on #6 below)
 5) Start the server: `npm run dev`
 6) This particular app uses basic authentication HTTP headers to identify the user ('tenant').  You can use Postman to call this API endpoint to fetch the sample 'users': http://localhost:10000/api/v1/users
-    * Reminder to set Postman to use basic auth with a username of the `TENANT_ID` value in .env, and a pasword of the `TENANT_API_KEY` value in .env.  To use basic auth credentials that will bypass RLS, set the username to the value of `TENANT_ID_BYPASSRLS` in .env.  See 'server/db/seed-data/tenants.js' for the `id` and `api_key` value for each tenant.
+    * Reminder to set Postman to use basic auth with a username of the `TENANT_ID` value in .env, and a pasword of the `TENANT_API_KEY` value in .env.  To use basic auth credentials that will bypass RLS, set the username to the value of `TENANT_ID_BYPASSRLS` in .env, and the corresponding password (api_key) which can be found in "server/db/seed-data/tenants.js" .

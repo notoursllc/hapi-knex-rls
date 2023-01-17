@@ -68,6 +68,8 @@ class TenantKnexManager {
             }
         };
 
+        // If the given tenantId is the one that should be able to bypass RLS policies, then we switch to the user defined by `DB_APPUSER_BYPASSRLS`,
+        // otherwise we use the regular `DB_APPUSER` user, which does not have `BYPASSRLS` (see server/db/migrations/1_create_app_user.js)
         knexConfig.connection.user = tenantId === process.env.TENANT_ID_BYPASSRLS ? process.env.DB_APPUSER_BYPASSRLS : process.env.DB_APPUSER;
         knexConfig.connection.password = tenantId === process.env.TENANT_ID_BYPASSRLS ? process.env.DB_APPUSER_BYPASSRLS_PASSWORD : process.env.DB_APPUSER_PASSWORD;
 
