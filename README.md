@@ -21,11 +21,11 @@ npm install
     * Note: take a peek at "server/db/seed-data/tenants.js", so you know what tenant IDs / api keys can be used for testing on #6 below)
 5) Start the server: `npm run dev`
 6) This particular app uses basic authentication HTTP headers to identify the user ('tenant').  You can use Postman to call this API endpoint to fetch the sample 'users': http://localhost:10000/api/v1/users
-    * Reminder to set Postman to use basic auth with a username of the `TENANT_ID` value in .env, and a pasword of the `TENANT_API_KEY` value in .env.  To use basic auth credentials that will bypass RLS, set the username to the value of `TENANT_ID_BYPASSRLS` in .env, and the corresponding password (api_key) which can be found in "server/db/seed-data/tenants.js" .
+    * Reminder to set Postman to use an Authorization type of "Basic Auth".   The username / password can be chosen from the tenant sample data file ("server/db/seed-data/tenants.js").  The "api_key" value is the password. To use Basic Auth credentials that will bypass RLS, set the Basic Auth username to the value of `TENANT_ID_BYPASSRLS` in .env (and the corresponding password (api_key) from "server/db/seed-data/tenants.js").
 
 
 ## How it works
-- The client sends credentials in the request header via basic auth (username: process.env.TENANT_ID, password: process.env.TENANT_API_KEY)
+- The client sends credentials in the request header via Basic Auth (See #6 above for where to find Basic Auth credentials)
 
 - The basic auth credentails are validated via the 'storeauth' stragegy in server/index.js.  If this validation is successful, an `auth` property is added to the `request` object, and a `credentails` prop is added to `request.auth` (`request.auth.credentails`).
 

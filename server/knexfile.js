@@ -11,7 +11,8 @@ const common = {
                 done(err, conn);
             });
 
-            conn.query(`SET app.current_tenant = "${process.env.TENANT_ID}"`, function (err) {
+            // NOTE: just randomly picking one of the tenant ID's for the sake of a demo
+            conn.query(`SET app.current_tenant = "22222222-2222-2222-2222-222222222222"`, function (err) {
                 if(err) {
                     console.error(err)
                 }
