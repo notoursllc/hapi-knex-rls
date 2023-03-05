@@ -65,6 +65,12 @@ class TenantKnexManager {
                         done(err, conn);
                     });
                 }
+            },
+
+            // This will make the tenant_id available via knex.userParams.tenant_id
+            // Docs for userParams: https://knexjs.org/guide/#configuration-options
+            userParams: {
+                tenant_id: tenantId
             }
         };
 
